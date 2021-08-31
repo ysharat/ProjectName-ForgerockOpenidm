@@ -1,0 +1,7 @@
+@import url("bootstrap.css");
+@import url("bootstrap-3.4.1-custom.css");
+
+body {padding-top: 60px;}
+@media (max-width: 979px){
+	body {padding-top: 0;}
+}

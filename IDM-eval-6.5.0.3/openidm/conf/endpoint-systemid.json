@@ -1,0 +1,9 @@
+{
+    "file" : "script/systemid.groovy",	
+    "type" : "groovy",
+	"globals" :{
+	"skip_entitlements" :true
+	},
+    "_file" : "echo.js",
+    "_type" : "text/javascript"
+}

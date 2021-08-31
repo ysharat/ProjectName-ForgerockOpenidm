@@ -1,0 +1,27 @@
+{
+    "enabled" : true,
+    "persisted" : true,
+    "recoverable" : false,
+    "misfirePolicy" : "fireAndProceed",
+    "schedule" : "0 4 * * * ?",
+    "repeatInterval" : 0,
+    "repeatCount" : 0,
+    "type" : "cron",
+    "invokeService" : "script",
+    "invokeContext" : {
+        "type" : "text/javascript",
+        "globals" : { },
+        "file" : "script/getPurgedSystemids.js",
+        "script" : {
+            "type" : "text/javascript",
+            "globals" : {
+                "input" : null
+            },
+            "file" : "script/getPurgedSystemids.js"
+        }
+    },
+    "invokeLogLevel" : "info",
+    "startTime" : null,
+    "endTime" : null,
+    "concurrentExecution" : false
+}

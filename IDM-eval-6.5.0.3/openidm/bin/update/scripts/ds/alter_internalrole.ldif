@@ -1,0 +1,43 @@
+###
+# Add 'fr-idm-temporal-constraints', 'fr-idm-privilege', 'fr-idm-name', and 'fr-idm-condition' attributeTypes to schema.
+# Modify 'fr-idm-internal-role' objectClass to support them.
+###
+dn: cn=schema
+changetype: modify
+add: attributeTypes
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.2.12
+    NAME 'fr-idm-temporal-constraints'
+    SYNTAX 1.3.6.1.4.1.36733.2.1.3.1
+    ORDERING caseIgnoreJsonQueryMatch
+    X-ORIGIN 'OpenIDM DSRepoService' )
+-
+add: attributeTypes
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.33
+  NAME 'fr-idm-privilege'
+  SYNTAX 1.3.6.1.4.1.36733.2.1.3.1
+  ORDERING caseIgnoreJsonQueryMatch
+  X-ORIGIN 'OpenIDM DSRepoService' )
+-
+add: attributeTypes
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.34
+    NAME 'fr-idm-name'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    ORDERING caseIgnoreOrderingMatch
+    X-ORIGIN 'OpenIDM DSRepoService' )
+-
+add: attributeTypes
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.35
+    NAME 'fr-idm-condition'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15
+    ORDERING caseIgnoreOrderingMatch
+    X-ORIGIN 'OpenIDM DSRepoService' )
+-
+delete: objectClasses
+objectClasses: ( 1.3.6.1.4.1.36733.2.3.2.4 )
+-
+add: objectClasses
+objectClasses: ( 1.3.6.1.4.1.36733.2.3.2.4.1
+    NAME 'fr-idm-internal-role' SUP top STRUCTURAL
+    MUST ( cn )
+    MAY ( description $ fr-idm-name $ fr-idm-temporal-constraints $ fr-idm-condition $ fr-idm-privilege )
+    X-ORIGIN 'OpenIDM DSRepoService' )

@@ -1,0 +1,36 @@
+{
+    "host" : "esfmylabfridm.mydmn.com",
+    "port" : 9999,
+    "timeout" : 300000,
+    "writetimeout" : 300000,
+    "connectiontimeout" : 300000,
+    "auth" : {
+        "enable" : false,
+        "username" : "ysharat@gmail.com",
+        "password" : {
+            "$crypto" : {
+                "type" : "x-simple-encryption",
+                "value" : {
+                    "cipher" : "AES/CBC/PKCS5Padding",
+                    "stableId" : "openidm-sym-default",
+                    "salt" : "hkeaWPFT3meeOYdJLcBz4A==",
+                    "data" : "yoV+I8m5/lkktfXOkskIbQ==",
+                    "keySize" : 16,
+                    "purpose" : "idm.config.encryption",
+                    "iv" : "W9IA3KYJLMbwufwTPqg7iA==",
+                    "mac" : "uhq0s4xTXZ04YUHWzqZSCA=="
+                }
+            }
+        }
+    },
+    "starttls" : {
+        "enable" : false
+    },
+    "ssl" : {
+        "enable" : false
+    },
+    "from" : "ysharat@gmail.com",
+    "debug" : false,
+    "smtpProperties" : [ ],
+    "threadPoolSize" : 20
+}

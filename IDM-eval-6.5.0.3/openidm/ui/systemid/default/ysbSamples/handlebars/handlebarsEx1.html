@@ -1,0 +1,31 @@
+<!--
+  Copyright 2015-2017 ForgeRock AS. All Rights Reserved
+
+  Use of this code requires a commercial software license with ForgeRock AS.
+  or with one of its affiliates. All use shall be exclusively subject
+  to such license between the licensee and ForgeRock AS.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  
+<!-- <link href="/ui/systemid/default/css/main.css" rel="stylesheet"> -->
+</head>
+
+<body >
+
+<h1>hello12 handlebars</h1>
+<div id="derekData"></div>
+
+
+<script src="/ui/systemid/default/libs/handlebars-4.5.3.js"></script>
+<script type="text/javascript">
+var myInfo = "<p> My name is {{name}} and i live at {{street}} </p>";
+var template = Handlebars.compile(myInfo);
+var data = template({name: "Derek", street: "123 oklama"});
+document.getElementById("derekData").innerHTML +=data;
+</script>
+
+</body>
+</html>
+

@@ -1,0 +1,46 @@
+{
+    "serverAuthContext" : {
+        "sessionModule" : {
+            "name" : "JWT_SESSION",
+            "properties" : {
+                "maxTokenLifeMinutes" : 120,
+                "tokenIdleTimeMinutes" : 30,
+                "sessionOnly" : true,
+                "isHttpOnly" : true
+            }
+        },
+        "authModules" : [
+            {
+                "name" : "INTERNAL_USER",
+                "properties" : {
+                    "queryId" : "credential-internaluser-query",
+                    "queryOnResource" : "internal/user",
+                    "propertyMapping" : {
+                        "authenticationId" : "username",
+                        "userCredential" : "password",
+                        "userRoles" : "authzRoles"
+                    },
+                    "defaultUserRoles" : [ ]
+                },
+                "enabled" : true
+            },
+            {
+                "name" : "TRUSTED_ATTRIBUTE",
+                "properties" : {
+                    "queryOnResource" : "managed/user",
+                    "propertyMapping" : {
+                        "authenticationId" : "userName",
+                        "userRoles" : "authzRoles"
+                    },
+                    "defaultUserRoles" : [ ],
+                    "authenticationIdAttribute" : "X-ForgeRock-AuthenticationId",
+                    "augmentSecurityContext" : {
+                        "type" : "text/javascript",
+                        "file" : "auth/populateRolesFromRelationship.js"
+                    }
+                },
+                "enabled" : true
+            }
+        ]
+    }
+}

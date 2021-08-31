@@ -1,0 +1,863 @@
+{
+    "mappings" : [
+        {
+            "target" : "system/ldap/account",
+            "source" : "managed/systemid",
+            "name" : "managedSystemID_systemLdapAccount",
+            "icon" : null,
+            "displayName" : "managedSystemID_systemLdapAccount",
+            "enableSync" : false,
+            "properties" : [
+                {
+                    "target" : "dn",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "\"uid=\" + source.fwldapid + \",ou=People,dc=example,dc=com\""
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "cn",
+                    "source" : "name"
+                },
+                {
+                    "target" : "sn",
+                    "source" : "eonid"
+                },
+                {
+                    "target" : "employeeNumber",
+                    "transform" : {
+                        "type" : "groovy",
+                        "globals" : {
+                            "defaultType" : "default172916"
+                        },
+                        "file" : "script/getJsonHelper.groovy"
+                    },
+                    "condition" : {
+                        "type" : "groovy",
+                        "globals" : { },
+                        "file" : "script/mappings/fwd/conditions/employeenumber.groovy"
+                    },
+                    "source" : ""
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "IGNORE",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ]
+        },
+        {
+            "target" : "managed/user",
+            "source" : "system/CADirLDAP/rogersWebPersonClass",
+            "name" : "systemCadirldapRogersWebPersonClass_managedUser",
+            "icon" : null,
+            "displayName" : "systemCadirldapRogersWebPersonClass_managedUser",
+            "enableSync" : true,
+            "properties" : [
+                {
+                    "target" : "sn",
+                    "transform" : {
+                        "type" : "groovy",
+                        "globals" : { },
+                        "file" : "script/fieldSn.groovy"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "givenName"
+                },
+                {
+                    "target" : "userName",
+                    "source" : "employeeNumber"
+                },
+                {
+                    "target" : "mail",
+                    "source" : "mail"
+                },
+                {
+                    "target" : "rogerssGUID",
+                    "source" : "rogers-GUID"
+                },
+                {
+                    "target" : "description",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "file" : "script/setYsbTest.js"
+                    },
+                    "source" : ""
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "IGNORE",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "UNLINK",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "UNLINK",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "any" : [
+                            "userName"
+                        ]
+                    },
+                    "mapping" : "systemCadirldapRogersWebPersonClass_managedUser",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ]
+        },
+        {
+            "target" : "system/ldap/account",
+            "source" : "managed/user",
+            "name" : "managedUser_systemOpenDJLdapAccount",
+            "enableSync" : true,
+            "icon" : null,
+            "displayName" : "managedUser_systemOpenDJLdapAccount",
+            "properties" : [
+                {
+                    "target" : "dn",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "\"uid=\" + source.userName + \",ou=People,dc=example,dc=com\"\n"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "cn",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "source.givenName + \".\" + source.sn"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "sn",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "source.sn"
+                    },
+                    "source" : ""
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "IGNORE",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "correlationQuery" : [
+                {
+                    "linkQualifier" : "default",
+                    "expressionTree" : {
+                        "any" : [
+                            "uid"
+                        ]
+                    },
+                    "mapping" : "managedUser_systemOpenDJLdapAccount",
+                    "type" : "text/javascript",
+                    "file" : "ui/correlateTreeToQueryFilter.js"
+                }
+            ],
+            "result" : {
+                "type" : "text/javascript",
+                "globals" : { },
+                "file" : "script/reconStats.js"
+            }
+        },
+        {
+            "target" : "system/openICFMSAD/account",
+            "source" : "managed/user",
+            "name" : "managedUser_MSAD_mappingNm",
+            "icon" : null,
+            "displayName" : "managedUser_MSAD_mappingNm",
+            "enableSync" : true,
+            "properties" : [
+                {
+                    "target" : "sn",
+                    "source" : "sn"
+                },
+                {
+                    "target" : "dn",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "\"cn=\" + source.userName + \",cn=Users,dc=mydmn,dc=com\""
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "sAMAccountName",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "source.givenName +\".\"+ source.sn"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "givenName"
+                },
+                {
+                    "target" : "carLicense",
+                    "default" : "yes"
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "IGNORE",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ]
+        },
+        {
+            "name" : "systemHrdb_managedUser",
+            "source" : "system/hrdb/account",
+            "target" : "managed/user",
+            "properties" : [
+                {
+                    "source" : "email",
+                    "target" : "mail"
+                },
+                {
+                    "source" : "uid",
+                    "target" : "userName"
+                },
+                {
+                    "source" : "lastName",
+                    "target" : "sn"
+                },
+                {
+                    "source" : "organization",
+                    "target" : "organization"
+                },
+                {
+                    "source" : "firstName",
+                    "target" : "givenName"
+                },
+                {
+                    "source" : "cars",
+                    "target" : "cars"
+                }
+            ],
+            "policies" : [
+                {
+                    "situation" : "CONFIRMED",
+                    "action" : "UPDATE"
+                },
+                {
+                    "situation" : "FOUND",
+                    "action" : "UPDATE"
+                },
+                {
+                    "situation" : "ABSENT",
+                    "action" : "CREATE"
+                },
+                {
+                    "situation" : "AMBIGUOUS",
+                    "action" : "IGNORE"
+                },
+                {
+                    "situation" : "MISSING",
+                    "action" : "UNLINK"
+                },
+                {
+                    "situation" : "SOURCE_MISSING",
+                    "action" : "DELETE"
+                },
+                {
+                    "situation" : "UNQUALIFIED",
+                    "action" : "IGNORE"
+                },
+                {
+                    "situation" : "UNASSIGNED",
+                    "action" : "IGNORE"
+                }
+            ]
+        },
+        {
+            "name" : "managedUser_systemHrdb",
+            "source" : "managed/user",
+            "target" : "system/hrdb/account",
+            "links" : "systemHrdb_managedUser",
+            "correlationQuery" : {
+                "type" : "text/javascript",
+                "source" : "({'_queryFilter': 'uid eq \"' + source.userName + '\"'});"
+            },
+            "onCreate" : {
+                "type" : "text/javascript",
+                "source" : "logger.info(\"Creating new user in external repo\")"
+            },
+            "onUpdate" : {
+                "type" : "text/javascript",
+                "source" : "logger.info(\"Updating existing user in external repo\")"
+            },
+            "properties" : [
+                {
+                    "source" : "userName",
+                    "target" : "uid"
+                },
+                {
+                    "source" : "password",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "source" : "openidm.decrypt(source);"
+                    },
+                    "condition" : {
+                        "type" : "text/javascript",
+                        "source" : "object.password != null"
+                    },
+                    "target" : "password"
+                },
+                {
+                    "source" : "givenName",
+                    "target" : "firstName"
+                },
+                {
+                    "source" : "sn",
+                    "target" : "lastName"
+                },
+                {
+                    "source" : "",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "source" : "source.givenName + ' ' + source.sn"
+                    },
+                    "target" : "fullName"
+                },
+                {
+                    "source" : "mail",
+                    "target" : "email"
+                },
+                {
+                    "source" : "organization",
+                    "target" : "organization",
+                    "default" : "IDM"
+                },
+                {
+                    "source" : "cars",
+                    "target" : "cars"
+                }
+            ],
+            "policies" : [
+                {
+                    "situation" : "CONFIRMED",
+                    "action" : "UPDATE"
+                },
+                {
+                    "situation" : "FOUND",
+                    "action" : "UPDATE"
+                },
+                {
+                    "situation" : "ABSENT",
+                    "action" : "CREATE"
+                },
+                {
+                    "situation" : "SOURCE_MISSING",
+                    "action" : "DELETE"
+                }
+            ]
+        },
+        {
+            "target" : "system/openICFMSAD/account",
+            "source" : "managed/systemid",
+            "name" : "managedSystemid_systemOpenicfmsadAccount",
+            "icon" : null,
+            "enableSync" : true,
+            "displayName" : "managedSystemid_systemOpenicfmsadAccount",
+            "correlationQuery" : {
+                "type" : "text/javascript",
+                "source" : "var map ={'_queryFilter': 'sAMAccountName eq \"' + source.name +'\"'};map;"
+            },
+            "properties" : [
+                {
+                    "target" : "dn",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "\"cn=\" + source.name + \",cn=Users,dc=mydmn,dc=com\""
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "sn",
+                    "source" : "fwldapid"
+                },
+                {
+                    "target" : "sAMAccountName",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "source.msid"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "givenName",
+                    "source" : "name"
+                },
+                {
+                    "target" : "__ENABLE__",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/getADStatus.js"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "employeeNumber",
+                    "transform" : {
+                        "type" : "text/javascript",
+                        "globals" : { },
+                        "source" : "source.fwldapid"
+                    },
+                    "source" : ""
+                },
+                {
+                    "target" : "displayName",
+                    "transform" : {
+                        "type" : "groovy",
+                        "globals" : {
+                            "realm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/mappings/ad/properties/displayname.groovy"
+                    },
+                    "source" : ""
+                }
+            ],
+            "policies" : [
+                {
+                    "action" : "IGNORE",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : "EXCEPTION",
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : "UPDATE",
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : "CREATE",
+                    "situation" : "ABSENT"
+                }
+            ],
+            "result" : {
+                "type" : "text/javascript",
+                "globals" : { },
+                "file" : "script/reconStats.js"
+            },
+            "onCreate" : {
+                "type" : "groovy",
+                "globals" : { },
+                "file" : "script/mappings/ad/onCreate.groovy"
+            }
+        },
+        {
+            "target" : "system/openICFMSAD/account",
+            "source" : "managed/systemid",
+            "name" : "managedSystemid_MSA_reconStatsOnly",
+            "enableSync" : false,
+            "taskThreads" : 20,
+            "correlationScript" : {
+                "type" : "groovy",
+                "globals" : {
+                    "realm" : "MSAD.MS.COM",
+                    "system" : "MSAD"
+                },
+                "file" : "script/mappings/ad/correlationScript.groovy"
+            },
+            "validSource" : {
+                "type" : "groovy",
+                "globals" : {
+                    "target" : "openICFMSAD",
+                    "enviorment" : null
+                },
+                "file" : "script/mappings/validSource.groovy"
+            },
+            "properties" : [ ],
+            "policies" : [
+                {
+                    "action" : "IGNORE",
+                    "situation" : "AMBIGUOUS"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "SOURCE_MISSING"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "MISSING"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "FOUND_ALREADY_LINKED"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "UNQUALIFIED"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "UNASSIGNED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "LINK_ONLY"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "TARGET_IGNORED"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "SOURCE_IGNORED"
+                },
+                {
+                    "action" : "IGNORE",
+                    "situation" : "ALL_GONE"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "CONFIRMED"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "FOUND"
+                },
+                {
+                    "action" : {
+                        "type" : "text/javascript",
+                        "globals" : {
+                            "displayTargetField" : "dn",
+                            "disabledTargetField" : "__ENABLE__",
+                            "disabledTargetValue" : false,
+                            "disabledTargetMode" : "standard",
+                            "targetRealm" : "MSAD.MS.COM"
+                        },
+                        "file" : "script/actionDBReport.js"
+                    },
+                    "situation" : "ABSENT"
+                }
+            ],
+            "result" : {
+                "type" : "text/javascript",
+                "globals" : {
+                    "displayTargetName" : "MSAD"
+                },
+                "file" : "script/postReconDBReport.js"
+            }
+        }
+    ]
+}

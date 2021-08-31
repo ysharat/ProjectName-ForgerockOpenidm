@@ -1,0 +1,44 @@
+###
+# Locks
+###
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.32 NAME 'fr-idm-lock-nodeid'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+objectClasses: ( 1.3.6.1.4.1.36733.2.3.2.13 NAME 'fr-idm-lock' SUP top STRUCTURAL
+    MAY ( fr-idm-lock-nodeid )
+    X-ORIGIN 'OpenIDM DSRepoService' )
+###
+# syncqueue
+###
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.36 NAME 'fr-idm-syncqueue-syncaction'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.37 NAME 'fr-idm-syncqueue-resourcecollection'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.38 NAME 'fr-idm-syncqueue-resourceid'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.39 NAME 'fr-idm-syncqueue-mapping'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.40 NAME 'fr-idm-syncqueue-objectrev'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.41 NAME 'fr-idm-syncqueue-oldobject'
+    SYNTAX 1.3.6.1.4.1.36733.2.1.3.1 EQUALITY caseIgnoreJsonQueryMatch ORDERING caseIgnoreOrderingMatch
+    X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.42 NAME 'fr-idm-syncqueue-newobject'
+    SYNTAX 1.3.6.1.4.1.36733.2.1.3.1 EQUALITY caseIgnoreJsonQueryMatch ORDERING caseIgnoreOrderingMatch
+    X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.43 NAME 'fr-idm-syncqueue-context'
+    SYNTAX 1.3.6.1.4.1.36733.2.1.3.1 EQUALITY caseIgnoreJsonQueryMatch ORDERING caseIgnoreOrderingMatch
+    X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.44 NAME 'fr-idm-syncqueue-state'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.45 NAME 'fr-idm-syncqueue-nodeid'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.46 NAME 'fr-idm-syncqueue-remainingretries'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.27 SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+attributeTypes: ( 1.3.6.1.4.1.36733.2.3.1.47 NAME 'fr-idm-syncqueue-createdate'
+    SYNTAX 1.3.6.1.4.1.1466.115.121.1.15 ORDERING caseIgnoreOrderingMatch SINGLE-VALUE X-ORIGIN 'OpenIDM DSRepoService' )
+objectClasses: ( 1.3.6.1.4.1.36733.2.3.2.14 NAME 'fr-idm-syncqueue' SUP top STRUCTURAL
+    MUST (fr-idm-syncqueue-syncaction $ fr-idm-syncqueue-resourcecollection $ fr-idm-syncqueue-resourceid
+    $ fr-idm-syncqueue-mapping $ fr-idm-syncqueue-context $ fr-idm-syncqueue-state
+    $ fr-idm-syncqueue-remainingretries $ fr-idm-syncqueue-createdate )
+    MAY (fr-idm-syncqueue-oldobject $ fr-idm-syncqueue-newobject $ fr-idm-syncqueue-nodeid $ fr-idm-syncqueue-objectrev )
+    X-ORIGIN 'OpenIDM DSRepoService' )

@@ -1,0 +1,8 @@
+###
+# Add notification OU.
+###
+
+dn: ou=notification,ou=internal,dc=openidm,dc=forgerock,dc=com
+objectclass: organizationalunit
+objectclass: top
+ou: notification

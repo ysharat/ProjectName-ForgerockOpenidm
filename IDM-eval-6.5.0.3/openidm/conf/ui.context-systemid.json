@@ -1,0 +1,7 @@
+{
+    "enabled" : true,
+    "urlContextRoot" : "/systemid",
+    "defaultDir" : "&{idm.install.dir}/ui/systemid/default",
+    "extensionDir" : "&{idm.install.dir}/ui/systemid/extension"
+    
+}

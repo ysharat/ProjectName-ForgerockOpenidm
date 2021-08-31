@@ -1,0 +1,19 @@
+{
+    "enabled" : true,
+    "persisted" : true,
+    "recoverable" : false,
+    "misfirePolicy" : "doNothing",
+    "schedule" : "0 30 1 ? * *",
+    "repeatInterval" : 0,
+    "repeatCount" : 0,
+    "type" : "cron",
+    "invokeService" : "sync",
+    "invokeContext" : {
+        "action" : "reconcile",
+        "mapping" : "managedSystemid_MSA_reconStatsOnly"
+    },
+    "invokeLogLevel" : "info",
+    "startTime" : null,
+    "endTime" : null,
+    "concurrentExecution" : false
+}

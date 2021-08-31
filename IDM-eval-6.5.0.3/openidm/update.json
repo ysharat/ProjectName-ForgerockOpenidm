@@ -1,0 +1,27 @@
+{
+    "update" : {
+        "description" : "Full product installation",
+        "resource" : "https://forgerock.org/openidm/doc/bootstrap/release-notes/",
+        "shutdownRequired" : false
+    },
+    "origin": {
+        "product": "OpenIDM",
+        "version": [
+            "[6.5.0,6.5.0.3]"
+        ]
+    },
+    "destination": {
+        "product": "OpenIDM",
+        "version": "6.5.0.3"
+    },
+    "removeFile" : [
+        "conf/servletfilter-gzip.json",
+        "security/realm.properties"
+	],
+    "removeConfig" : [
+    ],
+    "filesToBeIgnored" : [
+        "security/keystore.jceks",
+        "security/truststore"
+    ]
+}

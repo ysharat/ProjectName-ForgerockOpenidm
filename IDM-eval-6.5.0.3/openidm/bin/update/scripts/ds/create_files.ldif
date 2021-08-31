@@ -1,0 +1,8 @@
+###
+# Add File OU.
+###
+
+dn: ou=file,dc=openidm,dc=forgerock,dc=com
+objectClass: organizationalUnit
+objectClass: top
+ou: file

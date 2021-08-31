@@ -1,0 +1,19 @@
+{
+    "enabled" : false,
+    "persisted" : true,
+    "recoverable" : false,
+    "misfirePolicy" : "fireAndProceed",
+    "schedule" : "0 41 20 ? * *",
+    "repeatInterval" : 0,
+    "repeatCount" : 0,
+    "type" : "cron",
+    "invokeService" : "sync",
+    "invokeContext" : {
+        "action" : "reconcile",
+        "mapping" : "systemCadirldapRogersWebPersonClass_managedUser"
+    },
+    "invokeLogLevel" : "info",
+    "startTime" : null,
+    "endTime" : null,
+    "concurrentExecution" : false
+}

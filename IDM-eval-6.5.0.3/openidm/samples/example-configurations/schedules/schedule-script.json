@@ -1,0 +1,15 @@
+{
+    "enabled" : true,
+    "type": "simple",
+    "repeatInterval": 3600000,
+    "persisted" : true,
+    "concurrentExecution" : false,
+    "invokeService": "script",
+    "invokeContext": {
+        "script" : {
+              "type" : "text/javascript",
+              "source" : "java.lang.System.out.println('It is working: ' + input.edit);",
+              "input": { "edit": 26}
+            }
+    }
+}
