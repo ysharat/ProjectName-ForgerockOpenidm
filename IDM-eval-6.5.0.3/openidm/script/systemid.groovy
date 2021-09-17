@@ -6,7 +6,7 @@
  * to such license between the licensee and ForgeRock AS.
  */
 
-//package com.ms.forgerock.mappings.targets.fwd.conditions.MyGroovyTest
+//package com.ms.forgerock.mappings.targets.fwd.conditions.MyGroovyTest  yur comment1
 import groovy.transform.Field
 import mappings.fwd.conditions.MyGroovyTest
 import org.forgerock.json.resource.*
