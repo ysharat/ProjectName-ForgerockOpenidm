@@ -11,6 +11,7 @@ var email ={
 },
 template,
 Handlebars;
+yur comment
 if(openidm.read("config/external.email")){
     logger.warn("^^^^^^^global.elapsedTimeMinutes1= "+global.elapsedTimeMinutes);
     global.elapsedTimeMinutes =Math.floor((Date.parse(global.endTime)-Date.parse(global.startTime)) / 60.0) /1000;
