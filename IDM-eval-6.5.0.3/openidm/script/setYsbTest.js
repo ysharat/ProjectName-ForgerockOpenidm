@@ -9,6 +9,8 @@ logger.info("@Description attribute,Test debug log mail output message13 2172916
 //logger.debug("Test debug log output message13 2172916");
 //}
 
+// yur comment 2
+
 //logger.debug("Test debug log output message13 9172916 {} :: {}",source.mail,source.sn);
 //logger.debug("Test debug log output message13 7172916 {}",source.givenName);
 //logger.trace("Test trace log output message6 172919 {}",source.mail);
