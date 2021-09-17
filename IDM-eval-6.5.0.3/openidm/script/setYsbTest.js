@@ -8,7 +8,7 @@ logger.info("@Description attribute,Test debug log mail output message13 2172916
 //if(object.source == "undefined"){
 //logger.debug("Test debug log output message13 2172916");
 //}
-
+Adding comments
 // yur comment 2
 
 //logger.debug("Test debug log output message13 9172916 {} :: {}",source.mail,source.sn);
